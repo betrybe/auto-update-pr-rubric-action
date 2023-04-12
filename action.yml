@@ -1,10 +1,6 @@
 name: 'Auto Update Rubric Branches'
 description: "Update rubric`s branch when master was pushed"
-# inputs:
-#   update_branch:
-#     description: 'GitHub repository branch to restore files'
-#     default: 'main'
-#     required: true
+
 runs:
   using: 'composite'
   steps:
@@ -12,5 +8,3 @@ runs:
       continue-on-error: true
       shell: bash
       run: ${{ github.action_path }}/update.sh
-      # env:
-      #   INPUT_RESTORE_BRANCH: ${{ inputs.restore_branch }}

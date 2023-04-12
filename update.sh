@@ -9,7 +9,7 @@ git config user.email github-actions@github.com
 for branch in ${branches[@]}; do
   echo "Working on $branch"
   git checkout $branch
-  git merge --no-commit --no-ff main ||
+  git merge --no-commit --no-ff main
   conflicts=$?
   if [ "$conflicts" -eq "1" ] ; then
     git merge --abort

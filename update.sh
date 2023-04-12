@@ -1,7 +1,7 @@
 #!/bin/sh -l
 set -e
 
-branches=("rubric")
+branches=("rubric" "rubrica-vazia")
 
 git config user.name "Update branch"
 git config user.email github-actions@github.com

@@ -3,8 +3,8 @@ set -e
 
 branchs=['rubric']
 
-git config user.name "Update branch"
-git config user.email github-actions@github.com
+# git config user.name "Update branch"
+# git config user.email github-actions@github.com
 
 for branch in $branchs; do
   echo "Working on $branch"

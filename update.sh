@@ -1,12 +1,12 @@
 #!/bin/sh -l
 set -e
 
-branchs=('rubric')
+branches=("rubric")
 
 git config user.name "Update branch"
 git config user.email github-actions@github.com
 
-for branch in $branchs; do
+for branch in ${branches[@]}; do
   echo "Working on $branch"
   git checkout $branch
   git merge --no-commit --no-ff main ||

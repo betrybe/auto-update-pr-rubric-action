@@ -1,4 +1,4 @@
-#!/bin/sh -l
+#!/bin/bash
 set -e
 
 branches=("rubric" "rubrica-vazia")

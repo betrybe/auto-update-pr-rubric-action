@@ -11,7 +11,7 @@ for branch in ${branches[@]}; do
   git checkout $branch
   git merge --no-commit --no-ff main
   conflicts=$?
-  if [ "$conflicts" -eq "1" ] ; then
+  if [ $conflicts -eq 1 ] ; then
     git merge --abort
     echo "❌ Merge with conflicts. Resolve and merge manually"
   else

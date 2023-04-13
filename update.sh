@@ -1,5 +1,8 @@
 #!/bin/bash
 
+git config user.name "Update branch"
+git config user.email github-actions@github.com
+
 branches=("rubrica" "rubrica-vazia" "rubrica-parcial" "rubrica-quebrando-lint")
 
 for branch in ${branches[@]}; do

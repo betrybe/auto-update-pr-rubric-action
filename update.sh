@@ -21,6 +21,7 @@ for branch in ${branches[@]}; do
       echo "✅ Branch '$branch' is already up to date."
       ;;
     *"Automatic merge went well"*)
+      git merge --abort
       echo "Merge without conflicts."
       git merge main --no-edit -m "🤖 Merged by betrybe/auto-update-rubric-pr-action"
       git push origin $branch

@@ -27,6 +27,7 @@ for branch in ${branches[@]}; do
       git merge main --no-edit -m "🤖 Merged by betrybe/auto-update-rubric-pr-action"
       git push origin $branch
       echo "✅ Branch '$branch' was updated successfully!"
+    ;;
     
     *)
       echo "⚠️ Unexpected message returned."

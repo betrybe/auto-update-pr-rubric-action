@@ -12,6 +12,7 @@ for branch in ${branches[@]}; do
   git merge --no-commit --no-ff main && err=$? || err=$?
   git merge --abort
   if [ $err -eq 1 ] ; then
+    git commit --allow-empty -m "🤖 There was an attempt to update the branch that failed. Resolve conflicts and update manually"
     echo "❌ Merge with conflicts. Resolve and merge manually ⚠️"
   else
     echo "Merge without conflicts"

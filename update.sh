@@ -30,6 +30,8 @@ for branch in ${branches[@]}; do
     
     *)
       echo "⚠️ Unexpected message returned."
+    ;;
+
   esac
 
   echo "⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯"

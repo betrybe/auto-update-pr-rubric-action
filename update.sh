@@ -1,9 +1,7 @@
 #!/bin/bash
 
-set -x
-
-git config user.name "Update branch"
-git config user.email github-actions@github.com
+git config user.name "trybe-tech-ops"
+git config user.email 82593112+trybe-tech-ops@users.noreply.github.com
 
 branches=("rubrica" "rubrica-vazia" "rubrica-parcial" "rubrica-quebrando-lint")
 

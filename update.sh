@@ -1,7 +1,7 @@
 #!/bin/bash
 
 git config user.name "trybe-tech-ops"
-git config user.email "82593112+trybe-tech-ops@users.noreply.github.com"
+git config user.email "trybe-tech-ops@users.noreply.github.com"
 
 branches=("rubrica" "rubrica-vazia" "rubrica-parcial" "rubrica-quebrando-lint")
 

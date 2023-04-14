@@ -11,7 +11,7 @@ for branch in ${branches[@]}; do
   echo "---------------------------"
   echo "📝 Working on $branch"
   git checkout $branch
-  message=`git merge --no-commit --no-ff main`
+  message=`git merge main --no-commit --no-ff 2>&1`
   
   case $message in
     *"CONFLICT"*)
@@ -22,7 +22,7 @@ for branch in ${branches[@]}; do
     *"Already up to date"*)
       echo "✅ Branch '$branch' is already up to date."
       ;;
-    "")
+    *"Automatic merge went well"*)
       git merge --abort
       echo "Merge without conflicts."
       git merge main --no-edit -m "🤖 Merged by betrybe/auto-update-rubric-pr-action"

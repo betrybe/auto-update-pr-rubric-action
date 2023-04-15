@@ -5,11 +5,17 @@ git config user.email "trybe-tech-ops@users.noreply.github.com"
 
 branches=("rubrica" "rubrica-vazia" "rubrica-parcial" "rubrica-quebrando-lint")
 
+if [[ $? -eq 0 ]] ; then
+  branch="master"
+else
+  branch="main"
+fi
+
 for branch in ${branches[@]}; do
   echo "---------------------------"
   echo "📝 Working on $branch"
   git checkout $branch
-  message=`git merge main --no-commit --no-ff 2>&1`
+  message=`git merge $branch --no-commit --no-ff 2>&1`
   
   case $message in
     *"CONFLICT"*)

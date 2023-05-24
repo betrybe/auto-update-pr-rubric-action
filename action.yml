@@ -11,6 +11,9 @@ inputs:
   target_label:
     description: 'Target PR label'
     default: 'rubrica'
+  token:
+    description: 'GitHub PAT token'
+    required: true
 
 runs:
   using: 'composite'
@@ -18,4 +21,4 @@ runs:
     - id: job
       continue-on-error: true
       shell: bash
-      run: export INPUT_SOURCE_BRANCH=${{ inputs.source_branch }} && export INPUT_TARGET_BRANCHES="${{ inputs.target_branches }}" && ${{ github.action_path }}/update.sh
+      run: export INPUT_TOKEN=${{ inputs.token }} && export INPUT_SOURCE_BRANCH=${{ inputs.source_branch }} && export INPUT_TARGET_LABEL=${{ inputs.target_label }} && export INPUT_TARGET_BRANCHES="${{ inputs.target_branches }}" && ${{ github.action_path }}/update.sh

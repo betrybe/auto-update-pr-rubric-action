@@ -17,6 +17,7 @@ The default target branches to be updated are:
 
 | Name | Description | Required | Default |
 | --- | --- | --- | --- |
+| `token` | The GitHub token to be used to update the branches | true | |
 | `source_branch` | The source branch to be merged into target branches | false | `main` |
 | `target_branches` | The target branches to be updated, space separated | false | `rubrica rubrica-vazia rubrica-parcial rubrica-quebrando-lint` |
 | `target_label` | The label to be added to the pull request | false | `rubrica` |
@@ -49,9 +50,9 @@ jobs:
           path: .github/actions/update
       - name: Run Update Rubric Branches
         uses: ./.github/actions/update
-        # You can override the default values of source_branch and target_branches
-        # with:
-        #   source_branch: main
-        #   target_branches: rubrica rubrica-vazia rubrica-parcial rubrica-quebrando-lint
-        #   target_label: rubrica
+        with:
+          token: ${{ secrets.GIT_HUB_PAT }}
+          # source_branch: main
+          # target_branches: rubrica rubrica-vazia rubrica-parcial rubrica-quebrando-lint
+          # target_label: rubrica
 ```

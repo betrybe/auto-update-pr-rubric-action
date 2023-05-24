@@ -52,5 +52,4 @@ jobs:
         # with:
         #   source_branch: main
         #   target_branches: rubrica rubrica-vazia rubrica-parcial rubrica-quebrando-lint
-
 ```

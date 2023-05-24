@@ -17,7 +17,7 @@ git checkout "$source_branch"
 
 query="
 {
-  repository(owner: \\\"$owner\", name: \\\"$repository\\\") {
+  repository(owner: \\\"$owner\\\", name: \\\"$repository\\\") {
     pullRequests(first: 100, labels: [\\\"$target_label\\\"], states: OPEN) {
       edges {
         node {

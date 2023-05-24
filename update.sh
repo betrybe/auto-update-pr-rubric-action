@@ -10,7 +10,9 @@ target_branches=$INPUT_TARGET_BRANCHES
 
 git checkout "$source_branch"
 
-for target_branch in "${target_branches[@]}"; do
+IFS=" "
+
+for target_branch in $target_branches; do
   echo "---------------------------"
   echo "📝 Working on $target_branch"
   git checkout "$target_branch"

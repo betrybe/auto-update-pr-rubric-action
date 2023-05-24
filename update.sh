@@ -17,8 +17,8 @@ git checkout "$source_branch"
 
 query="
 {
-  repository(owner: \"$owner\", name: \"$repository\") {
-    pullRequests(first: 100, labels: [\"$target_label\"], states: OPEN) {
+  repository(owner: \\\"$owner\", name: \\\"$repository\\\") {
+    pullRequests(first: 100, labels: [\\\"$target_label\\\"], states: OPEN) {
       edges {
         node {
           headRefName
@@ -28,6 +28,7 @@ query="
   }
 }
 "
+query=${query//$'\n'/ }
 
 # Fetch pull requests with the 'rubric' label
 response=$(curl -s -H "Authorization: bearer $INPUT_TOKEN" -X POST -d "{ \"query\": \"$query\" }" https://api.github.com/graphql)

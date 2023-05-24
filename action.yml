@@ -8,6 +8,9 @@ inputs:
   target_branches:
     description: 'Target rubric branches'
     default: rubrica rubrica-vazia rubrica-parcial rubrica-quebrando-lint
+  target_label:
+    description: 'Target PR label'
+    default: 'rubrica'
 
 runs:
   using: 'composite'

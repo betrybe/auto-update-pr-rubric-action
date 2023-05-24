@@ -7,12 +7,41 @@ git config user.email "trybe-tech-ops@users.noreply.github.com"
 
 source_branch=$INPUT_SOURCE_BRANCH
 target_branches=$INPUT_TARGET_BRANCHES
+target_label=$INPUT_TARGET_LABEL
 
+# Extract owner and repository name from GITHUB_REPOSITORY
+IFS='/' read -r owner repository <<<"$GITHUB_REPOSITORY"
+
+# Begin in the source branch
 git checkout "$source_branch"
+
+query="
+{
+  repository(owner: $owner, name: $repository) {
+    pullRequests(first: 100, labels: [$target_label], states: OPEN) {
+      edges {
+        node {
+          headRefName
+        }
+      }
+    }
+  }
+}
+"
+
+# Fetch pull requests with the 'rubric' label
+response=$(curl -s -H "Authorization: bearer $INPUT_TOKEN" -X POST -d "{ \"query\": \"$query\" }" https://api.github.com/graphql)
+
+# Extract branch names from the response
+label_branches=$(echo "$response" | jq -r '.data.repository.pullRequests.edges[].node.headRefName')
+
+label_branches=${label_branches//$'\n'/ }
+
+all_branches=$(echo "$target_branches $label_branches" | awk '!seen[$0]++')
 
 IFS=" "
 
-for target_branch in $target_branches; do
+for target_branch in $all_branches; do
   echo "---------------------------"
   echo "📝 Working on $target_branch"
   git checkout "$target_branch"

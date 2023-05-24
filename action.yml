@@ -1,5 +1,13 @@
 name: 'Auto Update Rubric Branches'
-description: "Update rubric`s branch when master was pushed"
+description: "Update rubric`s branch when main branch was pushed"
+
+inputs:
+  source_branch:
+    description: 'Source branch'
+    default: main
+  target_branches:
+    description: 'Target rubric branches'
+    default: rubrica rubrica-vazia rubrica-parcial rubrica-quebrando-lint
 
 runs:
   using: 'composite'
@@ -7,4 +15,4 @@ runs:
     - id: job
       continue-on-error: true
       shell: bash
-      run: ${{ github.action_path }}/update.sh
+      run: export INPUT_SOURCE_BRANCH=${{ inputs.source_branch }} && export INPUT_TARGET_BRANCHES="${{ inputs.target_branches }}" && ${{ github.action_path }}/update.sh

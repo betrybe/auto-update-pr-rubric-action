@@ -1,10 +1,10 @@
 # GitHub Action: Auto Update Pull Request at Rubrics
 
-When an update occurs on the major branch (`master` or `main`), this action will be triggered.
+This action will try to merge a source branch into target rubric branches.
 
-This will execute a sequence of commands to try to merge the major branch into the four project heading branches.
+The default source branch is `main`.
 
-The branches to be updated are:
+The default target branches to be updated are:
 
 - rubrica
 - rubrica-vazia
@@ -13,9 +13,16 @@ The branches to be updated are:
 
 ## Usage
 
+### Inputs
+
+| Name | Description | Required | Default |
+| --- | --- | --- | --- |
+| `source_branch` | The source branch to be merged into target branches | false | `main` |
+| `target_branches` | The target branches to be updated, space separated | false | `rubrica rubrica-vazia rubrica-parcial rubrica-quebrando-lint` |
+
 To use this action in a project it is necessary to add a yml file, with any name, in the folder `./.github/workflows/` with the code below.
 
-Example: `./.github/workflows/action.yml`
+Example: `./.github/workflows/auto-update-rubrics.yml`
 
 ```yaml
 on:
@@ -25,19 +32,25 @@ on:
 
 jobs:
   update:
-    name: Update Rubric's Pull Request
+    name: Auto Update Rubric's Pull Request
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
+          token: ${{ secrets.GIT_HUB_PAT }}
           fetch-depth: 0
-      - name: Fetch Action
+      - name: Fetch Update Rubric Branches
         uses: actions/checkout@v3
         with:
           repository: betrybe/auto-update-pr-rubric-action
-          ref: main
+          ref: v1.0.0
           path: .github/actions/update
-      - name: Run Update Rubric PR
+      - name: Run Update Rubric Branches
         uses: ./.github/actions/update
+        # You can override the default values of source_branch and target_branches
+        # with:
+        #   source_branch: main
+        #   target_branches: rubrica rubrica-vazia rubrica-parcial rubrica-quebrando-lint
+
 ```

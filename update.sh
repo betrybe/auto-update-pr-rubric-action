@@ -38,7 +38,7 @@ label_branches=$(echo "$response" | jq -r '.data.repository.pullRequests.edges[]
 
 label_branches=${label_branches//$'\n'/ }
 
-all_branches=$(echo "$target_branches $label_branches" | awk '!seen[$0]++')
+all_branches=$(echo "$target_branches $label_branches" | awk -v RS=" " '!seen[$0]++' | paste -sd " ")
 
 IFS=" "
 

@@ -4,21 +4,23 @@ description: "Update rubric`s branch when main branch was pushed"
 inputs:
   source_branch:
     description: 'Source branch'
-    default: main
+    default: 'main'
   target_branches:
     description: 'Target rubric branches'
-    default: rubrica rubrica-vazia rubrica-parcial rubrica-quebrando-lint
+    default: 'rubrica rubrica-vazia rubrica-parcial rubrica-quebrando-lint'
   target_label:
     description: 'Target PR label'
     default: 'rubrica'
   token:
     description: 'GitHub PAT token'
     required: true
-
+  all_branches:
+    description: 'Update all branches'
+    default: 'false'
 runs:
   using: 'composite'
   steps:
     - id: job
       continue-on-error: true
       shell: bash
-      run: export INPUT_TOKEN=${{ inputs.token }} && export INPUT_SOURCE_BRANCH=${{ inputs.source_branch }} && export INPUT_TARGET_LABEL=${{ inputs.target_label }} && export INPUT_TARGET_BRANCHES="${{ inputs.target_branches }}" && ${{ github.action_path }}/update.sh
+      run: export INPUT_ALL_BRANCHES=${{ inputs.all_branches }} && export INPUT_TOKEN=${{ inputs.token }} && export INPUT_SOURCE_BRANCH=${{ inputs.source_branch }} && export INPUT_TARGET_LABEL=${{ inputs.target_label }} && export INPUT_TARGET_BRANCHES="${{ inputs.target_branches }}" && ${{ github.action_path }}/update.sh

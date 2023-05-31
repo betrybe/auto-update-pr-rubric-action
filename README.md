@@ -21,6 +21,7 @@ The default target branches to be updated are:
 | `source_branch` | The source branch to be merged into target branches | false | `main` |
 | `target_branches` | The target branches to be updated, space separated | false | `rubrica rubrica-vazia rubrica-parcial rubrica-quebrando-lint` |
 | `target_label` | The label to be added to the pull request | false | `rubrica` |
+| `all_branches` | If `true`, all branches will be updated | false | `false` |
 
 To use this action in a project it is necessary to add a yml file, with any name, in the folder `./.github/workflows/` with the code below.
 
@@ -52,7 +53,8 @@ jobs:
         uses: ./.github/actions/update
         with:
           token: ${{ secrets.GIT_HUB_PAT }}
-          # source_branch: main
-          # target_branches: rubrica rubrica-vazia rubrica-parcial rubrica-quebrando-lint
-          # target_label: rubrica
+          # source_branch: 'main'
+          # target_branches: 'rubrica rubrica-vazia rubrica-parcial rubrica-quebrando-lint'
+          # target_label: 'rubrica'
+          # all_branches: 'false'
 ```

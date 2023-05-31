@@ -12,6 +12,8 @@ update_all_branches=$INPUT_ALL_BRANCHES
 
 if [ "$update_all_branches" = "true" ]; then
   all_branches=$(git ls-remote --heads origin | sed 's?.*refs/heads/??')
+  all_branches=${all_branches//$'\n'/ }
+  all_branches=${all_branches//"$source_branch"/}
 else
   if [ -n "$target_label" ]; then
     # Extract owner and repository name from GITHUB_REPOSITORY
